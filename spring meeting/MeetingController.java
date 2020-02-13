@@ -47,15 +47,20 @@ public class MeetingController {
 	public ModelAndView meeting2(MeetingVO vo, String keyword) {
 		ModelAndView mav = new ModelAndView();
 		int id = vo.getId();
+		String name = vo.getName();
+		List<MeetingVO> list = null;
 	
 		if (id > 0) {
 			dao.delete(id);
+			list = dao.listAll();
+			mav.addObject("msg", name + "님의 글이 성공적으로 삭제되었습니다.");
+			mav.addObject("list", list);
 		} else if (keyword == null) {
-			List<MeetingVO> list = dao.listAll();
+			list = dao.listAll();
 			//System.out.println(list);
 			mav.addObject("list", list);
 		} else {
-			List<MeetingVO> list = dao.search(keyword);
+		    list = dao.search(keyword);
 			//System.out.println(keyword);
 			//System.out.println(list);
 			if (list.size() == 0) {

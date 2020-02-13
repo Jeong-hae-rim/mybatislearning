@@ -23,10 +23,10 @@ td:nth-child(3) {
 </style>
 </head>
 <Script>
-function f1(id){
+function f1(id, name){
 	if (confirm("정말 삭제하시겠습니까??") == true){ 
 
-		location.href="http://localhost:8000/springedu/meeting?id="+id;
+		location.href="http://localhost:8000/springedu/meeting?id="+id+"&name="+name;
 
 	}else{ 
 	    return;
@@ -44,14 +44,14 @@ function f1(id){
 				<td>${vo.title}</td>
 				<td>${vo.meetingDate}</td>
 				<td><img src="/mvc/images/trash.jpg" width=30
-					onclick="f1(${vo.id})"></td>
+					onclick="f1(${vo.id},'${vo.name}')"></td>
 			</tr>
 		</c:forEach>
 		</table>
 		</c:if>
 
 	<c:if test="${!empty msg}">
-		<h2>${msg}</h2>
+		<h3>${msg}</h3>
 	</c:if>
 	<hr>
 	<a href="/springedu/resources/meetingForm2.html">미팅 홈 화면으로 가기</a>
