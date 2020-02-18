@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="resource.NewsMapper">
 	<select id="selectNews" resultType="vo.NewsVO">
-		select id, writer, title, content, to_char(writedate, 'yyyy-mm-dd') writedate, cnt from news
+		select id, writer, title, content, to_char(writedate, 'rrrr-mm-dd') writedate, cnt from news
 	</select>
 	<select id="selectNewsOne" parameterType="_int" resultType="vo.NewsVO">
 		select * from news where id = #{id}
@@ -13,16 +13,16 @@
 		<selectKey resultType="_int" keyProperty="id" order="BEFORE">
 			SELECT news_seq.nextval FROM dual
 		</selectKey>
-		insert into news (id, writer, title, writedate, cnt) values
-		(#{id}, #{writer}, #{title}, to_date(#{writedate}, 'yyyy-mm-dd'), #{cnt})
+		insert into news (id, writer, title, content, writedate, cnt) values
+		 (#{id}, #{writer}, #{title}, #{content}, to_date(sysdate, 'rrrr-mm-dd'), #{cnt})
 	</insert>
 	<select id="selectNewsWriter" parameterType="string" resultType="vo.NewsVO">
         select * from news where writer = #{writer}
     </select>
     
 	<select id="searchNews" parameterType="java.util.HashMap" resultType="vo.NewsVO">
-		select id, writer, title, content, to_char(writedate, 'yyyy-mm-dd') writedate, cnt
-								from news where ${searchType} like '%'||#{key}||'%'
+		select id, writer, title, content, to_char(writedate, 'rrrr-mm-dd') writedate, cnt
+			from news where ${searchType} like '%'||#{key}||'%'
 	</select>
 	
 	<delete id="deleteNews" parameterType="_int">

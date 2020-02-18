@@ -67,7 +67,7 @@ td:nth-child(3) {
 	<br><br><br>
 
 	<DIV id="search" style="margin-left: 350px;">
-		<FORM method='GET' action='http://localhost:8000/springnews/newsmain'>
+		<FORM method='GET' action='/springnews/newsmain'>
 			<SELECT name='searchtype'>
 				<OPTION value='writer'>작성자</OPTION>
 				<OPTION value='title'>제목</OPTION>
@@ -95,10 +95,10 @@ td:nth-child(3) {
 			<td id="b4" style="width: 50px; text-align: center;"class='<%=vo.getId()%>'>
 			    <%=vo.getId()%></td>
 			<td id="b4" style="width: 300px; text-align: center;" class='<%=vo.getId()%>'
-				            onclick="location.href='http://localhost:8000/springnews/newsmain?action=read&id=<%=vo.getId()%>'">
+				            onclick="location.href='/springnews/newsmain?action=read&id=<%=vo.getId()%>'">
 				<%=vo.getTitle()%></td>
 			<td id="b4" style="width: 100px; text-align: center;" class='<%=vo.getId()%>'
-				            onclick="location.href='http://localhost:8000/springnews/newsmain?searchtype=writer&key=<%=vo.getWriter()%>'">
+				            onclick="location.href='/springnews/newsmain?searchtype=writer&key=<%=vo.getWriter()%>'">
 				<%=vo.getWriter()%></td>
 			<td id="b4" style="width: 200px; text-align: center;" class='<%=vo.getId()%>'>
 			    <%=vo.getWritedate()%></td>
@@ -135,7 +135,7 @@ td:nth-child(3) {
 		}
 
 		function del(writer) {
-			location.href = "http://localhost:8000/springnews/newsdelete?action=delete&id="+id+"&writer="+writer;
+			location.href = "/springnews/newsdelete?action=delete&id="+id+"&writer="+writer;
 		}
 
 		function displayUpdateForm(cv) {
@@ -146,7 +146,7 @@ td:nth-child(3) {
 	<div id="write" style="display: none">
 		<hr style="width: 50%;">
 		<h2 id="divT" style="color : #ffffff;">뉴스 작성</h2>
-		<form method="post" action="http://localhost:8000/springnews/newsinsert">
+		<form method="post" action="/springnews/newsinsert">
 			<input type="hidden" name="action" value="insert"> 
 			<input id="n_writer" style="width: 500px; text-align:left;" type="text" name="writer"
 			       placeholder="작성자명을 입력하세요"><br> 
@@ -164,7 +164,7 @@ td:nth-child(3) {
 	<div id="update" style="display: none">
 		<hr style="width: 50%;">
 		<h2 id="divT" style="color : #ffffff;">뉴스 내용</h2>
-		<form method="post" action="http://localhost:8000/springnews/newsupdate">
+		<form method="post" action="/springnews/newsupdate">
 			<input type="hidden" name="action" value="update"> 
 			   <input type="hidden" name="id" value="${read.id}"> 
 			   <input id="writer" style="width: 500px; text-align:left;" type="text" name="writer" value="${read.writer}"> <br> 

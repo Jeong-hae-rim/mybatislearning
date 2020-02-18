@@ -26,6 +26,7 @@ public class NewsController{
 		String writer = vo.getWriter();
 		String title = vo.getTitle();
 		String content = vo.getContent();
+		String writedate = vo.getWritedate();
 		
 		/*
 		 * System.out.println(searchtype); System.out.println(action);
@@ -38,6 +39,7 @@ public class NewsController{
 				mav.addObject("writer", writer);
 				mav.addObject("title" , title);
 				mav.addObject("content", content);
+				mav.addObject("writeate", writedate);
 
 				//System.out.println(my);  
 				//mav.addObject("read", list);
@@ -62,7 +64,6 @@ public class NewsController{
 				list = dao.search(key,searchtype);
 				mav.addObject("list", list);
 			}
-			
 			if (list.size() == 0) {
 				list = dao.listAll();
 				mav.addObject("list", list);
@@ -70,7 +71,6 @@ public class NewsController{
 			} else {
 				mav.addObject("list", list);
 			}
-			
 		}
 		
 		mav.setViewName("news");
@@ -109,16 +109,21 @@ public class NewsController{
 		String writer = vo.getWriter();
 		String title = vo.getTitle();
 		String content = vo.getContent();
+		String writedate = vo.getWritedate();
+
 		
 		mav.addObject("writer", writer);
 		mav.addObject("title", title);
 		mav.addObject("content", content);
+		mav.addObject("writedate", writedate);
+
 		
-		System.out.println(writer);
-		System.out.println(title);
-		System.out.println(content);
+		  System.out.println(writer); System.out.println(title);
+		  System.out.println(content); System.out.println(writedate);
+		 
 		
 		boolean result = dao.insert(vo);
+		System.out.println(vo);
 		if (result) {
 			mav.addObject("msg", writer + "님의 글이 성공적으로 입력되었습니다.");
 			mav.addObject("list", list);
@@ -143,6 +148,7 @@ public class NewsController{
 			mav.addObject("writer", writer);
 			mav.addObject("title", title);
 			mav.addObject("content", content);
+			
 			
 		    boolean result = dao.update(vo);
 		    if (result) {
